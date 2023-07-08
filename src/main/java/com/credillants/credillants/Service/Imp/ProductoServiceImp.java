@@ -78,4 +78,80 @@ public class ProductoServiceImp implements ProductoService{
             return Util.getResponse(false, Constante.OPERATION_FAILED, null);
         }
     }
+
+    @Override
+    public ResponseDto updateProducto(ProductoDto producto) {
+        try {
+            ProductosEntity productosEntity = prodRep.findById(producto.getIdProducto()).orElse(null);
+            if (null == productosEntity) {
+                return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
+            }
+            productosEntity.setNombreProducto(producto.getNombreProducto());
+            productosEntity.setDescripcionProducto(producto.getDescripcionProducto());
+            productosEntity.setPrecioProducto(producto.getPrecioProducto());
+            productosEntity.setEstadoProducto(producto.getEstadoProducto());
+            prodRep.save(productosEntity);
+            return Util.getResponse(true, Constante.OPERATION_SUCCESS, producto);
+        } catch (Exception e) {
+            return Util.getResponse(false, Constante.OPERATION_FAILED, null);
+        }
+    }
+
+    @Override
+    public ResponseDto inhabilitarProducto(Integer idProducto){
+        try {
+            ProductosEntity productosEntity = prodRep.findById(idProducto).orElse(null);
+            productosEntity.setEstadoProducto(false);
+            prodRep.save(productosEntity);
+            return Util.getResponse(true, Constante.OPERATION_SUCCESS, null);
+        } catch (Exception e) {
+			return Util.getResponse(false, Constante.OPERATION_FAILED, null);
+        }
+    }
+
+    @Override
+    public ResponseDto getProductosActivos(){
+        try {
+            List<ProductosEntity> obtenerProductosActivos = prodRep.findByEstadoProducto(true);
+            if(obtenerProductosActivos.isEmpty()) {
+                return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
+            }
+            List<ProductoDto> list = new ArrayList<ProductoDto>();
+            for (ProductosEntity productosEntity : obtenerProductosActivos) {
+                list.add(ProductoDto.builder()
+                    .idProducto(productosEntity.getIdProducto())
+                    .nombreProducto(productosEntity.getNombreProducto())
+                    .descripcionProducto(productosEntity.getDescripcionProducto())
+                    .precioProducto(productosEntity.getPrecioProducto())
+                    .estadoProducto(productosEntity.getEstadoProducto())
+                    .build());
+            }
+            return Util.getResponse(true, Constante.OPERATION_SUCCESS, list);
+        } catch (Exception e){
+            return Util.getResponse(false, Constante.OPERATION_FAILED, null);
+        }
+    }
+
+    @Override
+    public ResponseDto getProductosInactivos() {
+        try {
+            List<ProductosEntity> obtenerProductosActivos = prodRep.findByEstadoProducto(false);
+            if(obtenerProductosActivos.isEmpty()) {
+                return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
+            }
+            List<ProductoDto> list = new ArrayList<ProductoDto>();
+            for (ProductosEntity productosEntity : obtenerProductosActivos) {
+                list.add(ProductoDto.builder()
+                    .idProducto(productosEntity.getIdProducto())
+                    .nombreProducto(productosEntity.getNombreProducto())
+                    .descripcionProducto(productosEntity.getDescripcionProducto())
+                    .precioProducto(productosEntity.getPrecioProducto())
+                    .estadoProducto(productosEntity.getEstadoProducto())
+                    .build());
+            }
+            return Util.getResponse(true, Constante.OPERATION_SUCCESS, list);
+        } catch (Exception e){
+            return Util.getResponse(false, Constante.OPERATION_FAILED, null);
+        }
+    }
 }

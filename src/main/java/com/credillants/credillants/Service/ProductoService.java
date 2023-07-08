@@ -10,4 +10,8 @@ public interface ProductoService {
     public ResponseDto getProductosAll();
     public ResponseDto getProducto(Integer idProducto);
     public ResponseDto createProducto(ProductoDto producto);
+    public ResponseDto updateProducto(ProductoDto producto);
+    public ResponseDto inhabilitarProducto(Integer idProducto);
+    public ResponseDto getProductosActivos();
+    public ResponseDto getProductosInactivos();
 }
