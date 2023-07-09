@@ -1,5 +1,6 @@
 package com.credillants.Dto;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.credillants.credillants.Entity.ProductosEntity;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class CategoriaDto {
 	private Integer idCategoria;
 	private String nombreCategoria;
+	@Builder.Default
 	@JsonIgnore
-	private Set<ProductosEntity> productos;
+	private Set<ProductosEntity> productos = new LinkedHashSet<>();
 }
