@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.credillants.Dto.ProductoDto;
 import com.credillants.Dto.ResponseDto;
+import com.credillants.credillants.Entity.CategoriaEntity;
 
 @Service
 public interface ProductoService {
@@ -14,4 +15,5 @@ public interface ProductoService {
     public ResponseDto inhabilitarProducto(Integer idProducto);
     public ResponseDto getProductosActivos();
     public ResponseDto getProductosInactivos();
+    public ResponseDto getProductosdeunaCategoria(CategoriaEntity categoria);
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.credillants.Dto.ProductoDto;
 import com.credillants.Dto.ResponseDto;
+import com.credillants.credillants.Entity.CategoriaEntity;
 import com.credillants.credillants.Service.ProductoService;
 
 @RestController
@@ -56,5 +57,11 @@ public class ProductoController {
     @GetMapping("/productosInactivos")
     public ResponseEntity<ResponseDto> productosInactivos(){
     	return ResponseEntity.status(HttpStatus.OK).body(prodServ.getProductosInactivos());
+    }
+    
+    //@ApiOperation(value = "Metodo para listar Producto de una Categoria")
+    @GetMapping("/productodeunaCategoria/{id}")
+    public ResponseEntity<ResponseDto> productodeunaCategoria(@PathVariable("id") CategoriaEntity categoria){
+    	return ResponseEntity.status(HttpStatus.OK).body(prodServ.getProductosdeunaCategoria(categoria));
     }
 }
