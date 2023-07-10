@@ -32,7 +32,6 @@ public class CategoriaServiceImp implements CategoriaService{
 				list.add(CategoriaDto.builder()
 						.idCategoria(categoriaEntity.getIdCategoria())
 						.nombreCategoria(categoriaEntity.getNombreCategoria())
-						.productos(categoriaEntity.getProductos())
 						.build());
 			}
             return Util.getResponse(true, Constante.OPERATION_SUCCESS, list);
@@ -46,7 +45,6 @@ public class CategoriaServiceImp implements CategoriaService{
 		try {
 			CategoriaEntity categoriaEntity = CategoriaEntity.builder()
 					.nombreCategoria(categoria.getNombreCategoria())
-					.productos(categoria.getProductos())
 					.build();
 			catRep.save(categoriaEntity);
 			categoria.setIdCategoria(categoriaEntity.getIdCategoria());
@@ -64,7 +62,6 @@ public class CategoriaServiceImp implements CategoriaService{
 	            return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
 			}
 			categoriaEntity.setNombreCategoria(categoria.getNombreCategoria());
-			categoriaEntity.setProductos(categoria.getProductos());
 			catRep.save(categoriaEntity);
 	        return Util.getResponse(true, Constante.OPERATION_SUCCESS, categoria);
 		} catch (Exception e) {

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class ProductoDto {
 	private Integer idProducto;
     private String nombreProducto;
-    private CategoriaEntity categoria;
+    //private CategoriaEntity categoria;
     private Integer cantidadProducto;
     private Date duracionProducto;
     private Double precioProducto;

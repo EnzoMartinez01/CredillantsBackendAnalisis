@@ -32,7 +32,6 @@ public class ProductoServiceImp implements ProductoService{
                 list.add(ProductoDto.builder()
                     .idProducto(productoEntity.getIdProducto())
                     .nombreProducto(productoEntity.getNombreProducto())
-                    .categoria(productoEntity.getCategoria())
                     .cantidadProducto(productoEntity.getCantidadProducto())
                     .duracionProducto(productoEntity.getDuracionProducto())
                     .precioProducto(productoEntity.getPrecioProducto())
@@ -55,7 +54,6 @@ public class ProductoServiceImp implements ProductoService{
             ProductoDto productoDto = ProductoDto.builder()
                 .idProducto(prodEntity.getIdProducto())
                 .nombreProducto(prodEntity.getNombreProducto())
-                .categoria(prodEntity.getCategoria())
                 .cantidadProducto(prodEntity.getCantidadProducto())
                 .duracionProducto(prodEntity.getDuracionProducto())
                 .precioProducto(prodEntity.getPrecioProducto())
@@ -72,7 +70,6 @@ public class ProductoServiceImp implements ProductoService{
         try {
             ProductosEntity productoEntity = ProductosEntity.builder()
                 .nombreProducto(producto.getNombreProducto())
-                .categoria(producto.getCategoria())
                 .cantidadProducto(producto.getCantidadProducto())
                 .duracionProducto(producto.getDuracionProducto())
                 .precioProducto(producto.getPrecioProducto())
@@ -94,7 +91,6 @@ public class ProductoServiceImp implements ProductoService{
                 return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
             }
             productosEntity.setNombreProducto(producto.getNombreProducto());
-            productosEntity.setCategoria(producto.getCategoria());
             productosEntity.setCantidadProducto(producto.getCantidadProducto());
             productosEntity.setDuracionProducto(producto.getDuracionProducto());
             productosEntity.setPrecioProducto(producto.getPrecioProducto());
@@ -130,7 +126,6 @@ public class ProductoServiceImp implements ProductoService{
                 list.add(ProductoDto.builder()
                     .idProducto(productosEntity.getIdProducto())
                     .nombreProducto(productosEntity.getNombreProducto())
-                    .categoria(productosEntity.getCategoria())
                     .cantidadProducto(productosEntity.getCantidadProducto())
                     .duracionProducto(productosEntity.getDuracionProducto())
                     .precioProducto(productosEntity.getPrecioProducto())
@@ -155,7 +150,6 @@ public class ProductoServiceImp implements ProductoService{
                 list.add(ProductoDto.builder()
                     .idProducto(productosEntity.getIdProducto())
                     .nombreProducto(productosEntity.getNombreProducto())
-                    .categoria(productosEntity.getCategoria())
                     .cantidadProducto(productosEntity.getCantidadProducto())
                     .duracionProducto(productosEntity.getDuracionProducto())
                     .precioProducto(productosEntity.getPrecioProducto())
@@ -168,28 +162,4 @@ public class ProductoServiceImp implements ProductoService{
         }
     }
     
-    @Override
-    public ResponseDto getProductosdeunaCategoria(CategoriaEntity categoria) {
-    	try {
-    		List<ProductosEntity> obtenerProductosdeunaCategoria = prodRep.findByCategoria(categoria);
-    		if(obtenerProductosdeunaCategoria.isEmpty()) {
-                return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
-    		}
-    		List<ProductoDto> list = new ArrayList<ProductoDto>();
-    		for (ProductosEntity productosEntity : obtenerProductosdeunaCategoria) {
-    			list.add(ProductoDto.builder()
-    					.idProducto(productosEntity.getIdProducto())
-                        .nombreProducto(productosEntity.getNombreProducto())
-                        .categoria(productosEntity.getCategoria())
-                        .cantidadProducto(productosEntity.getCantidadProducto())
-                        .duracionProducto(productosEntity.getDuracionProducto())
-                        .precioProducto(productosEntity.getPrecioProducto())
-                        .estadoProducto(productosEntity.getEstadoProducto())
-                        .build());
-    		}
-            return Util.getResponse(true, Constante.OPERATION_SUCCESS, list);
-    	} catch (Exception e) {
-    		return Util.getResponse(false, Constante.OPERATION_FAILED, null);
-    	}
-    }
 }

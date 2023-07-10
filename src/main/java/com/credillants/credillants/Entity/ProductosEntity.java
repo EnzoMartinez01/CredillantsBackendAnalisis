@@ -1,11 +1,13 @@
 package com.credillants.credillants.Entity;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,8 +27,9 @@ public class ProductosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
     private String nombreProducto;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private CategoriaEntity categoria;
+    @JoinColumn(name = "idProducto", referencedColumnName = "cod_producto", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private ProductoCategoriaEntity productoCategoriaEntity;
     private Integer cantidadProducto;
     private Date duracionProducto;
     private Double precioProducto;

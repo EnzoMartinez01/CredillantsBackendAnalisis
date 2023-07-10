@@ -15,5 +15,4 @@ public interface ProductoService {
     public ResponseDto inhabilitarProducto(Integer idProducto);
     public ResponseDto getProductosActivos();
     public ResponseDto getProductosInactivos();
-    public ResponseDto getProductosdeunaCategoria(CategoriaEntity categoria);
 }

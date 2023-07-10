@@ -59,9 +59,4 @@ public class ProductoController {
     	return ResponseEntity.status(HttpStatus.OK).body(prodServ.getProductosInactivos());
     }
     
-    //@ApiOperation(value = "Metodo para listar Producto de una Categoria")
-    @GetMapping("/productodeunaCategoria/{id}")
-    public ResponseEntity<ResponseDto> productodeunaCategoria(@PathVariable("id") CategoriaEntity categoria){
-    	return ResponseEntity.status(HttpStatus.OK).body(prodServ.getProductosdeunaCategoria(categoria));
-    }
 }
