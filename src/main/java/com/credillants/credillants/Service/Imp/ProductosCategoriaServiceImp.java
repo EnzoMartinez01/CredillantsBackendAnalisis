@@ -44,6 +44,7 @@ public class ProductosCategoriaServiceImp implements ProductosCategoriasService{
 						.nombreCategoria(categoriaEntity.getNombreCategoria())
 						.idProducto(productosEntity.getIdProducto())
 						.nombreProducto(productosEntity.getNombreProducto())
+						.precioProducto(productosEntity.getPrecioProducto())
 						.build());
 			}
 			return Util.getResponse(true, Constante.OPERATION_SUCCESS, listProductoCategoriaDto); 

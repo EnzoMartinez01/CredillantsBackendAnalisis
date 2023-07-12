@@ -59,7 +59,7 @@ public class JWTAccessFilter extends WebSecurityConfigurerAdapter{
                 .cors()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/autenticacion/generartoken","/usuarios/registrarusuario","/Productos/obtenerProductos","/Productos/obtenerProducto/{id}","/Productos/productosActivos","/Productos/productosActivos")
+                .antMatchers("/autenticacion/generartoken","/usuarios/registrarusuario","/Productos/obtenerProductos","/Productos/obtenerProducto/{id}","/Productos/productosActivos","/Productos/productosInactivos")
                 .permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest()

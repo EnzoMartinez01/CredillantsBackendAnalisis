@@ -27,8 +27,8 @@ public class ProductosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
     private String nombreProducto;
-    @JoinColumn(name = "idProducto", referencedColumnName = "cod_producto", insertable = false, updatable = false)
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idProducto", referencedColumnName = "cod_producto",nullable = false, insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ProductoCategoriaEntity productoCategoriaEntity;
     private Integer cantidadProducto;
     private Date duracionProducto;

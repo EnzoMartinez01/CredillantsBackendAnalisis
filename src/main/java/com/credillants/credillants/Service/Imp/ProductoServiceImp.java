@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.credillants.Dto.ProductoDto;
 import com.credillants.Dto.ResponseDto;
-import com.credillants.credillants.Entity.CategoriaEntity;
 import com.credillants.credillants.Entity.ProductosEntity;
 import com.credillants.credillants.Repository.ProductoRepository;
 import com.credillants.credillants.Service.ProductoService;
@@ -121,9 +120,9 @@ public class ProductoServiceImp implements ProductoService{
             if(obtenerProductosActivos.isEmpty()) {
                 return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
             }
-            List<ProductoDto> list = new ArrayList<ProductoDto>();
+            List<ProductoDto> listProd = new ArrayList<ProductoDto>();
             for (ProductosEntity productosEntity : obtenerProductosActivos) {
-                list.add(ProductoDto.builder()
+                listProd.add(ProductoDto.builder()
                     .idProducto(productosEntity.getIdProducto())
                     .nombreProducto(productosEntity.getNombreProducto())
                     .cantidadProducto(productosEntity.getCantidadProducto())
@@ -132,7 +131,7 @@ public class ProductoServiceImp implements ProductoService{
                     .estadoProducto(productosEntity.getEstadoProducto())
                     .build());
             }
-            return Util.getResponse(true, Constante.OPERATION_SUCCESS, list);
+            return Util.getResponse(true, Constante.OPERATION_SUCCESS, listProd);
         } catch (Exception e){
             return Util.getResponse(false, Constante.OPERATION_FAILED, null);
         }
@@ -141,12 +140,12 @@ public class ProductoServiceImp implements ProductoService{
     @Override
     public ResponseDto getProductosInactivos() {
         try {
-            List<ProductosEntity> obtenerProductosActivos = prodRep.findByEstadoProducto(false);
-            if(obtenerProductosActivos.isEmpty()) {
+            List<ProductosEntity> obtenerProductosInactivos = prodRep.findByEstadoProducto(false);
+            if(obtenerProductosInactivos.isEmpty()) {
                 return Util.getResponse(true, Constante.NO_RECORDS_FOUND, null);
             }
             List<ProductoDto> list = new ArrayList<ProductoDto>();
-            for (ProductosEntity productosEntity : obtenerProductosActivos) {
+            for (ProductosEntity productosEntity : obtenerProductosInactivos) {
                 list.add(ProductoDto.builder()
                     .idProducto(productosEntity.getIdProducto())
                     .nombreProducto(productosEntity.getNombreProducto())

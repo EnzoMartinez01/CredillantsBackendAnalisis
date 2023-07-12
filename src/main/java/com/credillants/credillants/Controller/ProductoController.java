@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.credillants.Dto.ProductoDto;
 import com.credillants.Dto.ResponseDto;
-import com.credillants.credillants.Entity.CategoriaEntity;
 import com.credillants.credillants.Service.ProductoService;
 
 @RestController

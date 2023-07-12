@@ -16,7 +16,6 @@ import com.credillants.Dto.ResponseDto;
 import com.credillants.credillants.Entity.RolEntity;
 import com.credillants.credillants.Entity.UsuarioRolEntity;
 import com.credillants.credillants.Entity.UsuariosEntity;
-import com.credillants.credillants.Repository.UsuariosRepository;
 import com.credillants.credillants.Service.UsuariosService;
 import com.credillants.credillants.Service.Imp.UsuariosServiceImp;
 
